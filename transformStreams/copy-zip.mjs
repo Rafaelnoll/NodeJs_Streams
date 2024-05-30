@@ -12,9 +12,9 @@ sourceStream.on('data', (chunk) => {
 
     if(!canContinue){
         sourceStream.pause();
+        gzipStream.once('drain', () => sourceStream.resume());
     }
 
-    gzipStream.once('drain', () => sourceStream.resume());
 }); 
 
 gzipStream.on('data', (chunk) => {
@@ -23,9 +23,9 @@ gzipStream.on('data', (chunk) => {
 
     if(!canContinue){
         gzipStream.pause();
+        destinationStream.once('drain', () => gzipStream.resume());
     }
 
-    destinationStream.once('drain', () => gzipStream.resume());
 });
 
 sourceStream.on('end', () => {
