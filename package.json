@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "emoji": "^0.3.2",
     "readable-stream": "^4.5.2"
   }
 }
